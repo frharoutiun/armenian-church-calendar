@@ -1,0 +1,319 @@
+html:root {
+  --background: rgb(245, 247, 250);
+  --card-background: white;
+  --header-text: rgb(35, 45, 60);
+  --muted-text: rgb(95, 105, 120);
+  --accent: rgb(49, 97, 150);
+  --grid: rgb(224, 229, 235);
+  --info-bg: rgb(238, 244, 252);
+  --info-border: rgb(190, 210, 235);
+  --row-alt: rgb(248, 250, 253);
+  --table-header: rgb(232, 237, 244);
+  --field-background: white;
+  --button-background: rgb(239, 239, 239);
+  --tile-background: rgb(250, 252, 255);
+  --dialog-backdrop: rgba(0, 0, 0, 0.25);
+}
+
+html[data-theme="dark"] {
+  --background: rgb(20, 24, 31);
+  --card-background: rgb(31, 37, 47);
+  --header-text: rgb(235, 239, 245);
+  --muted-text: rgb(180, 190, 204);
+  --accent: rgb(142, 188, 238);
+  --grid: rgb(70, 80, 96);
+  --info-bg: rgb(43, 57, 76);
+  --info-border: rgb(86, 111, 143);
+  --row-alt: rgb(38, 45, 57);
+  --table-header: rgb(50, 60, 76);
+  --field-background: rgb(24, 29, 37);
+  --button-background: rgb(43, 51, 65);
+  --tile-background: rgb(36, 43, 55);
+  --dialog-backdrop: rgba(0, 0, 0, 0.55);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    --background: rgb(20, 24, 31);
+    --card-background: rgb(31, 37, 47);
+    --header-text: rgb(235, 239, 245);
+    --muted-text: rgb(180, 190, 204);
+    --accent: rgb(142, 188, 238);
+    --grid: rgb(70, 80, 96);
+    --info-bg: rgb(43, 57, 76);
+    --info-border: rgb(86, 111, 143);
+    --row-alt: rgb(38, 45, 57);
+    --table-header: rgb(50, 60, 76);
+    --field-background: rgb(24, 29, 37);
+    --button-background: rgb(43, 51, 65);
+    --tile-background: rgb(36, 43, 55);
+    --dialog-backdrop: rgba(0, 0, 0, 0.55);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--background);
+  transition: background-color 150ms ease, color 150ms ease;
+  color: var(--header-text);
+  font-family: "Noto Sans Armenian", "Noto Sans", "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+}
+
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  align-items: center;
+}
+
+.title-block h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+#subtitle {
+  margin: 2px 0 0;
+  color: var(--muted-text);
+  font-size: 13px;
+}
+
+.header-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.theme-controls {
+  display: grid;
+  grid-template-columns: auto 115px;
+  gap: 8px;
+  align-items: center;
+}
+
+.theme-controls label {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.theme-controls select {
+  height: 32px;
+  border: 1px solid rgb(170, 178, 188);
+  background: var(--field-background);
+  color: var(--header-text);
+  font: inherit;
+  font-size: 13px;
+  padding: 0 8px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: auto 95px 110px;
+  gap: 8px;
+  align-items: center;
+}
+
+.controls label {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.controls input {
+  width: 95px;
+  height: 32px;
+  text-align: center;
+  font-size: 15px;
+  border: 1px solid rgb(170, 178, 188);
+  background: var(--field-background);
+  color: var(--header-text);
+}
+
+button {
+  font-family: inherit;
+}
+
+.controls button {
+  height: 32px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  background: var(--button-background);
+  color: var(--header-text);
+  border: 1px solid var(--grid);
+}
+
+.card {
+  background: var(--card-background);
+  border: 1px solid var(--grid);
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.card h2 {
+  font-size: 16px;
+  margin: 0 0 12px;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.tile {
+  border: 1px solid var(--grid);
+  background: var(--tile-background);
+  padding: 10px 12px;
+  min-height: 76px;
+}
+
+.tile-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--muted-text);
+  font-size: 12px;
+}
+
+.tile-value {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--header-text);
+}
+
+.info-button {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border: 1px solid var(--info-border);
+  background: var(--info-bg);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.table-wrap {
+  height: 520px;
+  overflow: auto;
+  border: 1px solid var(--grid);
+  background: var(--field-background);
+  color: var(--header-text);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 13px;
+}
+
+th:nth-child(1), td:nth-child(1) { width: 47%; }
+th:nth-child(2), td:nth-child(2) { width: 25%; }
+th:nth-child(3), td:nth-child(3) { width: 18%; }
+th:nth-child(4), td:nth-child(4) { width: 10%; max-width: 70px; }
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: var(--table-header);
+  color: var(--header-text);
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px;
+  z-index: 1;
+}
+
+tbody td {
+  height: 30px;
+  padding: 0 8px;
+  vertical-align: middle;
+  border: none;
+  color: var(--header-text);
+  overflow-wrap: break-word;
+}
+
+tbody tr:nth-child(even) { background: var(--row-alt); }
+tbody tr.dominical { font-weight: 700; }
+
+td.info-cell { text-align: center; }
+
+.notes p {
+  margin: 0;
+  color: var(--muted-text);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+dialog {
+  width: 600px;
+  max-width: calc(100vw - 40px);
+  border: 1px solid var(--grid);
+  padding: 16px;
+  background: var(--card-background);
+  color: var(--header-text);
+}
+
+dialog::backdrop { background: var(--dialog-backdrop); }
+
+dialog h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+#dialogMessage {
+  white-space: pre-line;
+  max-height: 270px;
+  overflow: auto;
+  font-size: 13px;
+  line-height: 1.4;
+  border: 1px solid var(--grid);
+  padding: 8px;
+}
+
+.dialog-actions {
+  text-align: right;
+  margin-top: 14px;
+}
+
+#dialogClose {
+  min-width: 70px;
+  min-height: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--button-background);
+  color: var(--header-text);
+  border: 1px solid var(--grid);
+}
+
+@media (max-width: 850px) {
+  .header { align-items: flex-start; flex-direction: column; }
+  .header-actions { align-items: flex-start; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .app { padding: 12px; }
+  .tiles { grid-template-columns: 1fr; }
+  .header-actions { width: 100%; }
+  .theme-controls { grid-template-columns: auto 1fr; width: 100%; }
+  .controls { grid-template-columns: auto 95px 110px; }
+  table { min-width: 760px; }
+}
